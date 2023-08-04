@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+</script>
 
 <template>
-  <div>App</div>
+  <div>
+    测试
+  </div>
 </template>
 
 <style scoped></style>
