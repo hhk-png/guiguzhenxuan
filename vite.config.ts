@@ -2,7 +2,7 @@ import { ConfigEnv, UserConfigExport, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { viteMockServe } from "vite-plugin-mock"
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport => {
@@ -18,7 +18,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       viteMockServe({
         mockPath: 'mock',
         localEnabled: command === 'serve',
-      })
+      }),
     ],
     resolve: {
       alias: {
@@ -35,5 +35,4 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       },
     },
   }
-
 }
