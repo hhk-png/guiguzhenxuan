@@ -2,8 +2,8 @@ import SvgIcon from '../SvgIcon/index.vue'
 import { App, Component } from 'vue'
 
 const allGlobalComponents: Record<string, Component> = {
-  // Svg 
-  SvgIcon
+  // Svg
+  SvgIcon,
 }
 
 export default {
@@ -11,5 +11,5 @@ export default {
     Object.keys(allGlobalComponents).forEach((val) => {
       app.component(val, allGlobalComponents[val])
     })
-  }
+  },
 }
