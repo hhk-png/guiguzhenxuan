@@ -3,20 +3,15 @@
 </template>
 
 <script setup lang="ts">
-import axios from '@/utils/request'
+import { reqLogin } from './api/user/index'
 import { onMounted } from 'vue'
 // url: mock axios instance
 onMounted(async () => {
-  console.log(
-    await axios({
-      url: '/user/login',
-      method: 'post',
-      data: {
-        username: 'admin',
-        password: '123456',
-      },
-    }),
-  )
+  console.log(reqLogin)
+  console.log(await reqLogin({
+    username: 'admin',
+    password: '123456',
+  }))
 })
 </script>
 
