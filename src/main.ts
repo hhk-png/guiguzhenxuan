@@ -12,6 +12,9 @@ import globalComponents from '@/components/globalComponents/index.ts'
 import '@/styles/index.scss'
 // 路由
 import router from './router/index'
+// pinia
+import pinia from './store/index'
+
 
 const app = createApp(App)
 // 注册路由
@@ -22,5 +25,6 @@ app.use(ElementPlus, {
 })
 // 注册全局插件
 app.use(globalComponents)
-
+// pinia
+app.use(pinia)
 app.mount('#app')

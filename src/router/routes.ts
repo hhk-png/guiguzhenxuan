@@ -9,7 +9,7 @@ export const routes = [
   {
     // 登录
     path: '/',
-    component: () => import('@/views/home/index.vue'),
+    component: () => import('@/layout/index.vue'),
     name: 'layout'
   },
   {
