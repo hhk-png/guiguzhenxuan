@@ -3,11 +3,14 @@ import type { loginForm, loginResponseData } from '@/api/user/type'
 import { reqLogin } from '@/api/user'
 import { UserState } from './types/type'
 import { getToken, setToken } from '@/utils/token'
+import {routes} from '@/router/routes.ts'
 
 const useUserStore = defineStore('User', {
   state(): UserState {
     return {
-      token: getToken() || ''
+      token: getToken() || '',
+      // 路由
+      menuRoutes: routes
     }
   },
   actions: {
