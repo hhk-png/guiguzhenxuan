@@ -8,7 +8,6 @@
 <script setup lang="ts">
 // 设置标题与logo配置文件
 import setting from '@/settings.ts'
-console.log(setting.logo)
 </script>
 
 <script lang="ts">
@@ -24,9 +23,10 @@ export default {
   color: white;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding-left: 2px;
 
   .logo_img {
+    margin-right: 20px;
     width: $base-menu-logo-height;
     height: $base-menu-logo-height;
   }

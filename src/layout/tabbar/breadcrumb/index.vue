@@ -1,22 +1,31 @@
 <template>
   <el-icon @click="changeIcon" style="margin-right:10px">
-    <component :is="fold ? 'Fold' : 'Expand'"></component>
+    <component :is="layoutSettingStore.fold ? 'Fold' : 'Expand'"></component>
   </el-icon>
   <!-- 左侧面包屑 -->
   <el-breadcrumb separator-icon="ArrowRight">
-    <el-breadcrumb-item>权限管理</el-breadcrumb-item>
-    <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+    <!-- 面包屑动态展示路由名字与标题 -->
+    <el-breadcrumb-item :to="item.path" v-for="(item, index) in router.matched" :key="index" v-show="item.meta.title">
+      <el-icon style="margin: 0 5px;">
+        <component :is="item.meta.icon"></component>
+      </el-icon>
+      <span>{{ item.meta.title }}</span>
+    </el-breadcrumb-item>
+
   </el-breadcrumb>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-// 用于控制菜单的折叠
-const fold = ref(false)
+import useLayoutSettingStore from '@/store/stores/setting'
+import {useRoute} from 'vue-router'
 
+let layoutSettingStore = useLayoutSettingStore()
+const router = useRoute()
+// 用于控制菜单的折叠
 const changeIcon = () => {
-  fold.value = !fold.value
+  layoutSettingStore.fold = !layoutSettingStore.fold
 }
+
 
 </script>
 

@@ -1,22 +1,24 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider">
-      <Logo></Logo>
+    <div class="layout_slider" :class="{ fold: layoutSettingStore.fold ? true : false }">
+
       <!-- 展示菜单 -->
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
-        <el-menu :default-active="router.path" background-color="#001529" text-color="white">
-          <Menu :menuList="userStore.menuRoutes"></Menu>
+        <Logo></Logo>
+        <el-menu :collapse="layoutSettingStore.fold" active-text-color="#fff" :default-active="router.path"
+          background-color="#001529" text-color="#959ea6">
+          <Menu :menuList="userUserStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar">
+    <div class="layout_tabbar" :class="{ fold: layoutSettingStore.fold ? true : false }">
       <Tabbar></Tabbar>
     </div>
     <!-- 内容展示 -->
-    <div class="layout_main">
+    <div class="layout_main" :class="{ fold: layoutSettingStore.fold ? true : false }">
       <Main></Main>
     </div>
   </div>
@@ -31,9 +33,13 @@ import useUserStore from '@/store/stores/user'
 import Main from './main/index.vue'
 // tabbar
 import Tabbar from './tabbar/index.vue'
+// 菜单折叠
+import useLayoutSettingStore from '@/store/stores/setting.ts'
 
-let userStore = useUserStore()
+let userUserStore = useUserStore()
 const router = useRoute()
+const layoutSettingStore = useLayoutSettingStore()
+
 
 </script>
 
@@ -52,6 +58,7 @@ export default {
     width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
+    transition: all 0.3s;
 
     .scrollbar {
       width: 100%;
@@ -61,6 +68,10 @@ export default {
         border-right: none;
       }
     }
+
+    &.fold {
+      width: $base-menu-min-width;
+    }
   }
 
   .layout_tabbar {
@@ -69,6 +80,12 @@ export default {
     height: $base-tabbar-height;
     top: 0px;
     left: $base-menu-width;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 
   .layout_main {
@@ -81,6 +98,11 @@ export default {
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100vw - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
-}
-</style>
+}</style>

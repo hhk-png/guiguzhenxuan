@@ -1,6 +1,6 @@
 <template>
-  <el-button type="primary" size="small" circle icon="Refresh"></el-button>
-  <el-button type="primary" size="small" circle icon="FullScreen"></el-button>
+  <el-button @click="updateRefresh" type="primary" size="small" circle icon="Refresh"></el-button>
+  <el-button @click="fullScreen" type="primary" size="small" circle icon="FullScreen"></el-button>
   <el-button type="primary" size="small" circle icon="Setting"></el-button>
   <img src="../../../assets/images/logo.jpg" style="height: 24px; width: 24px;margin: 10px" alt="">
   <!-- 下拉菜单 -->
@@ -18,6 +18,23 @@
 </template>
 
 <script setup lang="ts">
+import useLayoutSettingStore from '@/store/stores/setting'
+const layoutSettingStore = useLayoutSettingStore()
+// 刷新
+const updateRefresh = () => {
+  layoutSettingStore.refresh = !layoutSettingStore.refresh
+}
+// 全屏
+const fullScreen = () => {
+  let full = document.fullscreenElement
+  if (!full) {
+    // 实现全屏模式
+    document.documentElement.requestFullscreen()
+  } else {
+    // 退出全屏模式
+    document.exitFullscreen()
+  }
+}
 
 </script>
 
