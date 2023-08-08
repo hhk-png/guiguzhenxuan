@@ -1,7 +1,7 @@
 <template>
   <div class="logo" v-show="setting.logoHidden">
     <img class="logo_img" :src="setting.logo" alt="图标">
-    <p>{{setting.title}}</p>
+    <p>{{ setting.title }}</p>
   </div>
 </template>
 
@@ -9,6 +9,12 @@
 // 设置标题与logo配置文件
 import setting from '@/settings.ts'
 console.log(setting.logo)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'Logo'
+}
 </script>
 
 <style lang="scss" scoped>
@@ -19,10 +25,12 @@ console.log(setting.logo)
   display: flex;
   align-items: center;
   padding: 20px;
+
   .logo_img {
     width: $base-menu-logo-height;
     height: $base-menu-logo-height;
   }
+
   p {
     font-size: $base-logo-title-fontsize;
   }
