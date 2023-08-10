@@ -16,9 +16,14 @@ import router from './router/index'
 import pinia from './store/index'
 
 
+
 const app = createApp(App)
 // 注册路由
 app.use(router)
+
+// 路由守卫
+import './permission'
+
 // 安装element plus 插件
 app.use(ElementPlus, {
   locale: zhCn,

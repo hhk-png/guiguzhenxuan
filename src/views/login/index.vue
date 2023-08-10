@@ -3,27 +3,28 @@ import { User, Lock } from "@element-plus/icons-vue"
 // import type { FormRules } from "@element-plus/icons-vue"
 import { reactive, ref } from 'vue'
 import userStore from '@/store/stores/user'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 
 const useUserStore = userStore()
 const router = useRouter()
+const route = useRoute()
 
 const loginForms = ref()
 
 const loading = ref(false)
 const loginForm = reactive({
   username: 'admin',
-  password: '123456'
+  password: 'atguigu123'
 })
 
 const login = async () => {
-  console.log(loginForms.value.validate())
+  const redirect = route.query.redirect
   // 登录
   loading.value = true
   const userLoginResult = await useUserStore.userLogin(loginForm)
   if (userLoginResult === 'ok') {
-    router.push('/')
+    router.push({path: redirect as string || '/home'})
     ElNotification({
       type: 'success',
       message: '登陆成功'

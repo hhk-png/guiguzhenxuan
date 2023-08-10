@@ -2,24 +2,35 @@
   <el-button @click="updateRefresh" type="primary" size="small" circle icon="Refresh"></el-button>
   <el-button @click="fullScreen" type="primary" size="small" circle icon="FullScreen"></el-button>
   <el-button type="primary" size="small" circle icon="Setting"></el-button>
-  <img src="../../../assets/images/logo.jpg" style="height: 24px; width: 24px;margin: 10px" alt="">
+  <img :src="userStore.avatar" style="height: 24px; width: 24px;margin: 10px; border-radius: 50%;" alt="">
   <!-- 下拉菜单 -->
   <el-dropdown>
     <span class="el-dropdown-link">
-      admin
+      {{ userStore.username }}
       <el-icon class="el-icon-right">
         <arrow-down />
       </el-icon>
     </span>
     <template #dropdown>
-      <el-dropdown-item>退出登录</el-dropdown-item>
+      <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
     </template>
   </el-dropdown>
 </template>
 
 <script setup lang="ts">
 import useLayoutSettingStore from '@/store/stores/setting'
+// user store
+import useUserStore from '@/store/stores/user'
+// router
+import { useRouter, useRoute } from 'vue-router'
+
+const userStore = useUserStore()
+const router = useRouter()
+const route = useRoute()
+
 const layoutSettingStore = useLayoutSettingStore()
+
+
 // 刷新
 const updateRefresh = () => {
   layoutSettingStore.refresh = !layoutSettingStore.refresh
@@ -35,6 +46,22 @@ const fullScreen = () => {
     document.exitFullscreen()
   }
 }
+
+// 退出登录
+const logout = async () => {
+  // 需要向服务器发请求，退出登录
+  //  清空仓库中的相关数据
+  // 转到登陆界面
+  try {
+    await userStore.userLogout()
+    // 携带query 参数
+    router.push({ path: '/login', query: { redirect: route.path } })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+
 
 </script>
 

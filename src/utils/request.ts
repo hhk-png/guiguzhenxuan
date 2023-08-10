@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+// 引入用户相关的仓库
+import useUserStore from '@/store/stores/user'
 
 const Axios = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -7,6 +9,11 @@ const Axios = axios.create({
 })
 
 Axios.interceptors.request.use((config) => {
+  // 获取仓库内部token，登录成功以后携带给服务器
+  const userStore = useUserStore()
+  if (userStore.token) {
+    config.headers.token = userStore.token
+  }
   // 配置对象
   return config
 })
