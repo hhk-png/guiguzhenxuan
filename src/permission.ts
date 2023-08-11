@@ -5,7 +5,6 @@ import useUserStore from '@/store/stores/user'
 import pinia from './store'
 
 const userStore = useUserStore(pinia)
-console.log(userStore)
 
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
   const token = userStore.token

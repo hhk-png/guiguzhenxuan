@@ -2,11 +2,12 @@ import SvgIcon from '../SvgIcon/index.vue'
 import { App, Component } from 'vue'
 // 引入elementplus全部图标组件
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
+import Category from '../category/index.vue'
 
 const allGlobalComponents: Record<string, Component> = {
   // Svg
   SvgIcon,
+  Category
 }
 
 export default {

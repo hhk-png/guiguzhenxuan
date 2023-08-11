@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { loginForm, loginResponseData } from '@/api/user/type'
+import type { LoginForm, LoginResponse, UserInfoResponse } from '@/api/user/type'
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
 import { UserState } from './types/type'
 import { getToken, setToken, removeToken } from '@/utils/token'
@@ -18,8 +18,8 @@ const useUserStore = defineStore('User', {
   },
   actions: {
     // 登陆的逻辑
-    async userLogin(data: any) {
-      const result: any = await reqLogin(data)
+    async userLogin(data: LoginForm) {
+      const result: LoginResponse = await reqLogin(data)
       if (result.code === 200) {
         this.token = result.data
         // 本地持久化存储
@@ -31,13 +31,13 @@ const useUserStore = defineStore('User', {
     // 获取用户信息
     async userInfo() {
       // 获取用户信息并存储
-      const result = await reqUserInfo()
+      const result: UserInfoResponse = await reqUserInfo()
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
         return 'ok'
       } else {
-        return Promise.reject(new Error(result.data))
+        return Promise.reject(new Error(result.message))
       }
     },
     // 退出登录

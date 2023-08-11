@@ -1,6 +1,11 @@
-export interface loginForm {
+export interface LoginForm {
   username: string,
   password: string
+}
+export interface Response {
+  code: number,
+  message: string,
+  ok: boolean,
 }
 
 interface dataType {
@@ -9,9 +14,8 @@ interface dataType {
 }
 
 // 登录接口返回数据类型
-export interface loginResponseData {
-  code: number,
-  data: dataType,
+export interface LoginResponse extends Response{
+  data: string
 }
 
 // 定义服务器返回用户信息
@@ -29,7 +33,12 @@ interface userInfo {
 interface user {
   checkUser: userInfo
 }
-export interface userResponseData {
-  code: number,
-  data: user
+export interface UserInfoResponse extends Response {
+  data: {
+    routes: string[],
+    buttons: string[],
+    roles: string[],
+    name: string,
+    avatar: string
+  }
 }
