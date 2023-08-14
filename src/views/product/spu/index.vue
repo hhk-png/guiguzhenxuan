@@ -12,7 +12,7 @@
           <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
           <el-table-column label="SPU操作">
             <template #="{ row, index }">
-              <el-button type="primary" size="small" icon="Plus" title="添加SPU">添加</el-button>
+              <el-button @click="addSku(row)" type="primary" size="small" icon="Plus" title="添加SPU">添加</el-button>
               <el-button @click="updateSpu(row)" type="primary" size="small" icon="Edit" title="修改SPU">修改</el-button>
               <el-button type="primary" size="small" icon="View" title="查看SPU列表">查看</el-button>
               <el-button type="primary" size="small" icon="Delete" title="删除SPU">删除</el-button>
@@ -28,7 +28,7 @@
       <!-- 添加修改spu -->
       <SpuForm ref="spu" @changeScene="changeScene" v-show="scene === 1"></SpuForm>
       <!-- 添加sku -->
-      <SkuForm v-show="scene === 2"></SkuForm>
+      <SkuForm @changeScene="changeScene" ref="sku" v-show="scene === 2"></SkuForm>
     </el-card>
   </div>
 </template>
@@ -59,6 +59,8 @@ const total = ref<number>(400)
 const records = ref<Records>([])
 // SpuForm 实例
 const spu = ref<any>()
+// SkuForm 实例
+const sku = ref<any>()
 
 // 监听三级分类id 变化
 watch(() => categoryStore.c3Id, async () => {
@@ -103,7 +105,11 @@ const changeScene = (num: number | {flag: number, params: string}) => {
   } 
 }
 
-
+// 添加SKU 按钮
+const addSku = (row: SpuData) => {
+  scene.value = 2
+  sku.value.initSkuData(categoryStore.c1Id, categoryStore.c2Id, row)
+}
 
 
 
