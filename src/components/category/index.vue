@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, defineProps} from 'vue'
+import { onMounted, ref } from 'vue'
 import useCategoryStore from '@/store/stores/category.ts'
 const categoryStore = useCategoryStore()
 
@@ -56,6 +56,4 @@ const c2Select = () => {
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
