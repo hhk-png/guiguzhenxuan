@@ -3,6 +3,8 @@ import ElementPlus from 'element-plus'
 //@ts-ignore
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'element-plus/dist/index.css'
+// 暗黑模式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import App from '@/App.vue'
 // svg 插件需要配置的代码
 import 'virtual:svg-icons-register'

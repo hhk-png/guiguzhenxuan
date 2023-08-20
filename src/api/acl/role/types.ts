@@ -32,3 +32,24 @@ export interface RoleResponseData extends ResponseData {
   }
 }
 
+// 菜单与按钮数据
+export interface MenuData {
+  id: number;
+  createTime: string;
+  udpatTime: string;
+  pid: number;
+  name: string;
+  code: string;
+  toCode: string;
+  type: number;
+  status: null;
+  level: number;
+  children: MenuList;
+  select: boolean;
+}
+export type MenuList = MenuData[];
+// 菜单权限与按钮权限数据
+export interface MenuResponseData extends ResponseData {
+  data: MenuList;
+}
+

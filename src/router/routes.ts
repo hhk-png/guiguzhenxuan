@@ -78,7 +78,7 @@ export const routes = [
       },
       {
         path: '/acl/permission',
-        component: () => import('@/views/acl/permission/index.vue'),
+        component: () => import('@/views/acl/menu/index.vue'),
         name: 'AclPermission',
         meta: {
           title: '菜单管理',
