@@ -14,6 +14,8 @@ import globalComponents from '@/components/globalComponents/index.ts'
 import '@/styles/index.scss'
 // 路由
 import router from './router/index'
+// 路由守卫
+import './permission'
 // pinia
 import pinia from './store/index'
 
@@ -23,8 +25,6 @@ const app = createApp(App)
 // 注册路由
 app.use(router)
 
-// 路由守卫
-import './permission'
 
 // 安装element plus 插件
 app.use(ElementPlus, {
