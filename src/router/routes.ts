@@ -6,6 +6,7 @@ export const routes = [
     path: '/login',
     component: () => import('@/views/login/index.vue'),
     name: 'login',
+    //redirect: '/home',
     meta: {
       title: '登录',
       hidden: true,

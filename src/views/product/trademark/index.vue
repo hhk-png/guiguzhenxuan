@@ -31,7 +31,8 @@
     <!-- 分页器组件 -->
     <el-pagination @current-change="changePageNo" @size-change="sizeChange" :page-count="9" v-model:current-page="pageNo"
       v-model:page-size="limit" :page-sizes="[3, 5, 7, 9]" layout="prev, pager, next, jumper, ->, sizes, total"
-      :total="total"></el-pagination>
+      :total="total">
+    </el-pagination>
   </el-card>
   <!-- 添加品牌 -->
   <el-dialog v-model="dialogFormVisible" :title="trademarkParams.id ? '修改品牌' : '添加品牌'">

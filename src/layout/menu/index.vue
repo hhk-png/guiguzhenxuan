@@ -47,6 +47,7 @@ const router = useRouter()
 
 
 const goRoute = (vc: any) => {
+  console.log(vc)
   router.push(vc.index)
 }
 
